@@ -7,49 +7,59 @@
   <title>AK Minds X Inkspire Prints</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
-      --primary-color: #6200ea;
-      --accent-color: #a266ff;
-      --bg-dark: #0a0a0a;
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+      --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      --transition: all 0.25s ease;
     }
 
     body {
       margin: 0;
       padding: 0;
-      background: var(--bg-dark);
-      font-family: 'Inter', sans-serif;
-      color: #fff;
+      background-color: var(--bg-color);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
       display: flex;
       justify-content: center;
       min-height: 100vh;
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Animated Background Gradient */
-    .bg-gradient {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at 50% 50%, #1a0040 0%, #0a0a0a 100%);
-      z-index: -1;
-    }
-
-    .container {
+    .app-container {
       width: 100%;
-      max-width: 450px;
-      padding: 40px 20px;
-      text-align: center;
-      z-index: 1;
+      max-width: 500px;
+      background: var(--bg-color);
+      min-height: 100vh;
+      position: relative;
+      padding-bottom: 40px;
     }
 
-    /* Profile Section */
-    .profile-header {
-      margin-bottom: 30px;
+    /* Cover Photo Area */
+    .cover-photo {
+      height: 160px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      position: relative;
+    }
+
+    /* Profile Info */
+    .profile-section {
+      text-align: center;
+      padding: 0 20px;
+      margin-top: -55px;
+      position: relative;
+      z-index: 2;
     }
 
     .profile-pic {
@@ -57,157 +67,184 @@
       height: 110px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--glass-border);
-      padding: 5px;
-      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-      box-shadow: 0 10px 30px rgba(98, 0, 234, 0.3);
+      border: 4px solid var(--bg-color);
+      background-color: #fff;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 12px;
     }
 
     h1 {
-      font-size: 24px;
-      font-weight: 600;
-      margin: 15px 0 5px;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
       letter-spacing: -0.5px;
     }
 
-    .subtitle {
+    .bio {
       font-size: 14px;
-      color: #aaa;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 30px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin: 0;
     }
 
-    /* Category Labels */
-    .section-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent-color);
-      text-align: left;
-      margin: 25px 10px 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      opacity: 0.8;
+    /* Links Layout */
+    .content-wrapper {
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
     }
 
-    /* Links Styling */
-    .links-container {
+    .category-group {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
 
+    .category-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin: 0 0 4px 4px;
+    }
+
     .link-card {
       display: flex;
       align-items: center;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      backdrop-filter: blur(10px);
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       padding: 16px 20px;
-      border-radius: 16px;
-      color: #fff;
+      border-radius: 12px;
+      color: var(--text-main);
       text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
       position: relative;
       overflow: hidden;
     }
 
-    .link-card:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--accent-color);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
     .link-card i {
       font-size: 20px;
-      width: 30px;
-      margin-right: 15px;
-      color: var(--accent-color);
+      width: 32px;
+      margin-right: 12px;
+      color: #9ca3af;
+      transition: var(--transition);
       text-align: center;
     }
 
-    .link-text {
-      font-size: 15px;
-      font-weight: 400;
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+      border-color: #d1d5db;
     }
 
-    /* Footer */
+    /* Brand Hover Colors for Extra Professionalism */
+    .link-youtube:hover i { color: #FF0000; }
+    .link-whatsapp:hover i { color: #25D366; }
+    .link-instagram:hover i { color: #E1306C; }
+    .link-facebook:hover i { color: #1877F2; }
+    .link-linkedin:hover i { color: #0A66C2; }
+    .link-location:hover i { color: #EA4335; }
+    .link-creator:hover i { color: #8B5CF6; }
+
     footer {
-      margin-top: 50px;
-      font-size: 12px;
-      color: #555;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 480px) {
-      .container { padding: 30px 15px; }
-      h1 { font-size: 22px; }
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
-  <div class="bg-gradient"></div>
 
-  <main class="container">
-    <div class="profile-header">
+  <div class="app-container">
+    <div class="cover-photo"></div>
+    
+    <div class="profile-section">
       <img src="https://raw.githubusercontent.com/AshfakIqbal/link-in-bio/main/profile.jpg" alt="Mohammed Ashfak" class="profile-pic" />
-      <h1>AK Minds X Inkspire Prints</h1>
-      <div class="subtitle">Proprietor: Mohammed Ashfak</div>
+      <h1>Mohammed Ashfak</h1>
+      <p class="bio">Proprietor • AK Minds X Inkspire Prints</p>
     </div>
 
-    <div class="links-container">
+    <div class="content-wrapper">
       
-      <div class="section-title">Business & Brand</div>
-      
-      <a href="https://www.instagram.com/inkspireprints/" class="link-card" target="_blank">
-        <i class="fa-brands fa-instagram"></i>
-        <span class="link-text">Inkspire Prints Instagram</span>
-      </a>
+      <div class="category-group">
+        <h2 class="category-title">📢 Latest & Featured</h2>
+        
+        <a href="https://www.youtube.com/@AKMindsxInkspirePrints" class="link-card link-youtube" target="_blank">
+          <i class="fa-brands fa-youtube"></i>
+          <span>Watch on YouTube</span>
+        </a>
 
-      <a href="https://www.facebook.com/profile.php?id=61567069805851" class="link-card" target="_blank">
-        <i class="fa-brands fa-facebook-f"></i>
-        <span class="link-text">Inkspire Prints Facebook</span>
-      </a>
+        <a href="https://whatsapp.com/channel/0029VaB4P6kDZ4LU5l8lUF0X" class="link-card link-whatsapp" target="_blank">
+          <i class="fa-solid fa-bullhorn"></i>
+          <span>Join WhatsApp Channel</span>
+        </a>
+      </div>
 
-      <a href="https://www.instagram.com/ak_minds/" class="link-card" target="_blank">
-        <i class="fa-solid fa-brain"></i>
-        <span class="link-text">AK Minds Instagram</span>
-      </a>
+      <div class="category-group">
+        <h2 class="category-title">🖨️ Inkspire Prints</h2>
 
-      <a href="https://www.linkedin.com/company/ak-minds/" class="link-card" target="_blank">
-        <i class="fa-brands fa-linkedin-in"></i>
-        <span class="link-text">LinkedIn Company Page</span>
-      </a>
+        <a href="https://www.instagram.com/inkspireprints/" class="link-card link-instagram" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+          <span>Inkspire Prints Instagram</span>
+        </a>
 
-      <a href="https://wa.me/94702949758" class="link-card" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span class="link-text">Business WhatsApp</span>
-      </a>
+        <a href="https://www.facebook.com/profile.php?id=61567069805851" class="link-card link-facebook" target="_blank">
+          <i class="fa-brands fa-facebook-f"></i>
+          <span>Inkspire Prints Facebook</span>
+        </a>
 
-      <a href="https://g.co/kgs/JZbfrZM" class="link-card" target="_blank">
-        <i class="fa-solid fa-location-dot"></i>
-        <span class="link-text">Visit Our Location</span>
-      </a>
+        <a href="https://wa.me/94702949758" class="link-card link-whatsapp" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Business WhatsApp</span>
+        </a>
 
+        <a href="https://g.co/kgs/JZbfrZM" class="link-card link-location" target="_blank">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Visit the Shop</span>
+        </a>
+      </div>
 
-      <div class="section-title">Connect with Me</div>
+      <div class="category-group">
+        <h2 class="category-title">💡 AK Minds</h2>
 
-      <a href="https://www.instagram.com/drk.soul_lvr/" class="link-card" target="_blank">
-        <i class="fa-solid fa-wand-magic-sparkles"></i>
-        <span class="link-text">Creator Instagram</span>
-      </a>
+        <a href="https://www.instagram.com/ak_minds/" class="link-card link-instagram" target="_blank">
+          <i class="fa-solid fa-brain"></i>
+          <span>AK Minds Instagram</span>
+        </a>
 
-      <a href="https://wa.me/94772949758" class="link-card" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span class="link-text">Creator WhatsApp</span>
-      </a>
+        <a href="https://www.linkedin.com/company/ak-minds/" class="link-card link-linkedin" target="_blank">
+          <i class="fa-brands fa-linkedin-in"></i>
+          <span>LinkedIn Company Page</span>
+        </a>
+      </div>
+
+      <div class="category-group">
+        <h2 class="category-title">👋 Meet the Creator</h2>
+
+        <a href="https://www.instagram.com/drk.soul_lvr/" class="link-card link-instagram" target="_blank">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Creator Instagram</span>
+        </a>
+
+        <a href="https://wa.me/94772949758" class="link-card link-whatsapp" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Creator WhatsApp</span>
+        </a>
+      </div>
 
     </div>
 
     <footer>
-      &copy; 2026 AK Minds X Inkspire Prints
+      &copy; 2026 Mohammed Ashfak
     </footer>
-  </main>
+  </div>
+
 </body>
 </html>
