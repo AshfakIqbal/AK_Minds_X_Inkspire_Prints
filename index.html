@@ -1,145 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="AK Minds X Inkspire Prints | Professional Links for Mohammed Ashfak" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AK Minds X Inkspire Prints - Premium Design and Print Solutions">
   <title>AK Minds X Inkspire Prints</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
-      --bg-color: #f3f4f6;
-      --card-bg: #ffffff;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --border-color: #e5e7eb;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-      --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
-      --transition: all 0.25s ease;
+      --bg-main: #050505;
+      --bg-card: rgba(25, 25, 25, 0.6);
+      --text-main: #ffffff;
+      --text-muted: #a3a3a3;
+      --accent: #4f46e5;
+      --accent-glow: rgba(79, 70, 229, 0.4);
+      --border: rgba(255, 255, 255, 0.08);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-main);
       color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    .app-container {
-      width: 100%;
-      max-width: 500px;
-      background: var(--bg-color);
-      min-height: 100vh;
-      position: relative;
-      padding-bottom: 40px;
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Ambient Glow */
+    .ambient-glow {
+      position: fixed;
+      top: -20%; left: -10%;
+      width: 50vw; height: 50vw;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(100px);
+      z-index: -1;
+      animation: pulseGlow 8s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.2) translate(5%, 5%); }
     }
 
-    /* Cover Photo Area */
-    .cover-photo {
-      height: 160px;
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      position: relative;
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      padding: 15px 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(5, 5, 5, 0.7);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
     }
-
-    /* Profile Info */
-    .profile-section {
-      text-align: center;
-      padding: 0 20px;
-      margin-top: -55px;
-      position: relative;
-      z-index: 2;
+    .nav-logos { display: flex; align-items: center; gap: 15px; }
+    .nav-logos img { height: 40px; object-fit: contain; }
+    .nav-links { display: flex; gap: 40px; list-style: none; font-weight: 500; }
+    .nav-links a { color: var(--text-main); text-decoration: none; transition: var(--transition); }
+    .nav-links a:hover { color: var(--accent); }
+    .btn-outline {
+      border: 1px solid var(--border); padding: 10px 24px; border-radius: 30px;
+      text-decoration: none; color: var(--text-main); transition: var(--transition);
+      background: rgba(255,255,255,0.03);
     }
+    .btn-outline:hover { background: var(--text-main); color: var(--bg-main); }
 
-    .profile-pic {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--bg-color);
-      background-color: #fff;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 12px;
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 120px 20px 60px;
     }
-
-    h1 {
-      font-size: 22px;
-      font-weight: 700;
-      margin: 0 0 4px 0;
-      letter-spacing: -0.5px;
+    .badge {
+      background: rgba(79, 70, 229, 0.1); border: 1px solid rgba(79, 70, 229, 0.3);
+      color: #818cf8; padding: 6px 16px; border-radius: 20px; font-size: 0.9rem;
+      font-weight: 500; margin-bottom: 25px; letter-spacing: 1px; text-transform: uppercase;
     }
-
-    .bio {
-      font-size: 14px;
-      color: var(--text-muted);
-      font-weight: 500;
-      margin: 0;
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+      background: linear-gradient(to right, #ffffff, #a3a3a3);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
 
-    /* Links Layout */
-    .content-wrapper {
-      padding: 24px 20px;
-      display: flex;
-      flex-direction: column;
+    /* Carousel Section */
+    .carousel-section { padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
+    .carousel-container {
+      position: relative; width: 100%; height: 60vh; min-height: 400px;
+      border-radius: 24px; overflow: hidden; border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .carousel-track {
+      display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .carousel-slide { min-width: 100%; height: 100%; position: relative; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
+    
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5); color: white; border: none;
+      width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+      backdrop-filter: blur(5px); transition: var(--transition); z-index: 10;
+    }
+    .carousel-btn:hover { background: var(--accent); }
+    .prev-btn { left: 20px; } .next-btn { right: 20px; }
+    
+    .carousel-dots {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 10px; z-index: 10;
+    }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.3);
+      cursor: pointer; transition: var(--transition);
+    }
+    .dot.active { background: var(--accent); transform: scale(1.2); }
+
+    /* Bento Grid (Capabilities) */
+    .bento-section { padding: 80px 5%; max-width: 1400px; margin: 0 auto; }
+    .section-title { font-size: 2.5rem; margin-bottom: 40px; font-weight: 700; text-align: center; }
+    .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .bento-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px;
+      padding: 40px; backdrop-filter: blur(10px); transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .bento-card:hover {
+      transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .card-large { grid-column: span 2; }
+    .card-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+    .bento-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+    .bento-card p { color: var(--text-muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .tag { background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; border: 1px solid var(--border); }
+
+    /* Behance Card */
+    .behance-card { background: linear-gradient(135deg, rgba(23, 105, 255, 0.1) 0%, rgba(25, 25, 25, 0.6) 100%); border-color: rgba(23, 105, 255, 0.3); }
+    .behance-card:hover { border-color: #1769ff; box-shadow: 0 20px 40px rgba(23, 105, 255, 0.15); }
+    .behance-btn {
+      display: inline-block; margin-top: 20px; padding: 12px 24px; border-radius: 8px;
+      background: #1769ff; color: white; font-weight: 600; text-decoration: none; transition: var(--transition);
+    }
+    .behance-btn:hover { background: #145ce6; transform: translateX(5px); }
+
+    /* --- MERGED LINK DIRECTORY (Connect Hub) --- */
+    .link-directory {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
+      padding: 40px;
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      margin-top: 40px;
     }
 
-    .category-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .creator-profile {
+      text-align: center;
+      margin-bottom: 20px;
+      grid-column: 1 / -1; /* Spans full width */
+    }
+    
+    .creator-profile img {
+      width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--accent); margin-bottom: 15px;
+      box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
     }
 
+    .category-group { display: flex; flex-direction: column; gap: 12px; }
     .category-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      margin: 0 0 4px 4px;
+      font-size: 13px; font-weight: 700; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 8px;
     }
 
     .link-card {
-      display: flex;
-      align-items: center;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      padding: 16px 20px;
-      border-radius: 12px;
-      color: var(--text-main);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      box-shadow: var(--shadow-sm);
+      display: flex; align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 14px 18px; border-radius: 12px;
+      color: var(--text-main); text-decoration: none;
+      font-weight: 500; font-size: 14px;
       transition: var(--transition);
-      position: relative;
-      overflow: hidden;
     }
 
     .link-card i {
-      font-size: 20px;
-      width: 32px;
-      margin-right: 12px;
-      color: #9ca3af;
-      transition: var(--transition);
-      text-align: center;
+      font-size: 18px; width: 30px; margin-right: 12px;
+      color: var(--text-muted); transition: var(--transition); text-align: center;
     }
 
     .link-card:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-      border-color: #d1d5db;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     /* Brand Hover Colors for Extra Professionalism */
@@ -151,100 +222,231 @@
     .link-location:hover i { color: #EA4335; }
     .link-creator:hover i { color: #8B5CF6; }
 
-    footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
+    /* Footer */
+    footer { padding: 40px 5%; border-top: 1px solid var(--border); margin-top: 50px; text-align: center; color: var(--text-muted); font-size: 0.9rem;}
+    
+    .fab {
+      position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
+      width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+      font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; text-decoration: none; transition: var(--transition);
+    }
+    .fab:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
+
+    @media (max-width: 900px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .card-large { grid-column: span 1; }
+      .nav-links { display: none; }
+      .carousel-container { height: 40vh; }
     }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
-    <div class="cover-photo"></div>
-    
-    <div class="profile-section">
-      <img src="https://raw.githubusercontent.com/AshfakIqbal/link-in-bio/main/profile.jpg" alt="Mohammed Ashfak" class="profile-pic" />
-      <h1>Mohammed Ashfak</h1>
-      <p class="bio">Proprietor • AK Minds X Inkspire Prints</p>
-    </div>
+  <div class="ambient-glow"></div>
 
-    <div class="content-wrapper">
+  <nav>
+    <div class="nav-logos">
+      <img src="https://raw.githubusercontent.com/AshfakIqbal/link-in-bio/main/AKlogo.jpg" alt="AK Minds">
+      <img src="https://raw.githubusercontent.com/AshfakIqbal/link-in-bio/main/Inklog.jpg" alt="Inkspire">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#gallery">Featured Work</a></li>
+      <li><a href="#agency">Capabilities</a></li>
+      <li><a href="#connect">Connect Hub</a></li>
+    </ul>
+    <a href="#connect" class="btn-outline">Quick Links</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge reveal">Est. Gelioya, Sri Lanka</div>
+    <h1 class="reveal" style="transition-delay: 0.1s;">Creative Vision.<br>Premium Print.</h1>
+    <p class="reveal" style="transition-delay: 0.2s;">We don't just design brands; we build them physically. From striking digital campaigns to high-fidelity offset printing.</p>
+  </header>
+
+  <section id="gallery" class="carousel-section reveal">
+    <div class="carousel-container" id="carouselContainer" aria-label="Featured Work Gallery">
+      <button class="carousel-btn prev-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="carousel-track" id="carouselTrack">
+        </div>
+      <button class="carousel-btn next-btn" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="carousel-dots" id="carouselDots">
+        </div>
+    </div>
+  </section>
+
+  <section id="agency" class="bento-section">
+    <h2 class="section-title reveal">Our Capabilities</h2>
+    <div class="bento-grid">
       
+      <div class="bento-card card-large reveal">
+        <i class="fa-solid fa-brain card-icon"></i>
+        <h3>AK Minds Studio</h3>
+        <p>Our creative powerhouse. We specialize in high-impact visual communication, ensuring your brand stands out in both digital and physical spaces.</p>
+        <div class="tags">
+          <span class="tag">Combat Sports & Event Posters</span>
+          <span class="tag">Apparel & Jersey Design</span>
+          <span class="tag">Brand Identity</span>
+          <span class="tag">Digital Illustrations</span>
+        </div>
+      </div>
+
+      <div class="bento-card behance-card reveal" style="transition-delay: 0.1s;">
+        <i class="fa-brands fa-behance card-icon" style="color: #1769ff;"></i>
+        <h3>Design Portfolio</h3>
+        <p>Explore our complete gallery of conceptual designs, brand identities, and commercial artwork on Behance.</p>
+        <a href="https://www.behance.net/ashfaqash" target="_blank" class="behance-btn">View on Behance <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+      </div>
+
+      <div class="bento-card reveal">
+        <i class="fa-solid fa-print card-icon"></i>
+        <h3>Inkspire Prints</h3>
+        <p>Precision execution. We turn our digital concepts into tangible realities with state-of-the-art offset and digital printing.</p>
+      </div>
+
+      <div class="bento-card card-large reveal" style="transition-delay: 0.1s;">
+        <i class="fa-solid fa-book-open card-icon"></i>
+        <h3>Custom Publications & Layouts</h3>
+        <p>From conceptualizing layouts to the final bind, we design and print custom materials like children's coloring books, manuals, and professional magazines.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="connect" class="bento-section">
+    <h2 class="section-title reveal">Connect With Us</h2>
+    
+    <div class="link-directory reveal">
+      
+      <div class="creator-profile">
+        <img src="https://raw.githubusercontent.com/AshfakIqbal/link-in-bio/main/profile.jpg" alt="Mohammed Ashfak" />
+        <h3 style="font-size: 1.5rem; margin-bottom: 5px;">Mohammed Ashfak</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Proprietor • AK Minds X Inkspire Prints</p>
+      </div>
+
       <div class="category-group">
-        <h2 class="category-title">📢 Latest & Featured</h2>
+        <div class="category-title">📢 Latest & Creator</div>
         
         <a href="https://www.youtube.com/@AKMindsxInkspirePrints" class="link-card link-youtube" target="_blank">
-          <i class="fa-brands fa-youtube"></i>
-          <span>Watch on YouTube</span>
+          <i class="fa-brands fa-youtube"></i><span>Watch on YouTube</span>
         </a>
-
         <a href="https://whatsapp.com/channel/0029VaB4P6kDZ4LU5l8lUF0X" class="link-card link-whatsapp" target="_blank">
-          <i class="fa-solid fa-bullhorn"></i>
-          <span>Join WhatsApp Channel</span>
+          <i class="fa-solid fa-bullhorn"></i><span>Join WhatsApp Channel</span>
+        </a>
+        <a href="https://www.instagram.com/drk.soul_lvr/" class="link-card link-instagram" target="_blank">
+          <i class="fa-solid fa-wand-magic-sparkles"></i><span>Creator Instagram</span>
+        </a>
+        <a href="https://wa.me/94772949758" class="link-card link-whatsapp" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i><span>Creator WhatsApp</span>
         </a>
       </div>
 
       <div class="category-group">
-        <h2 class="category-title">🖨️ Inkspire Prints</h2>
+        <div class="category-title">🖨️ Inkspire Prints</div>
 
         <a href="https://www.instagram.com/inkspireprints/" class="link-card link-instagram" target="_blank">
-          <i class="fa-brands fa-instagram"></i>
-          <span>Inkspire Prints Instagram</span>
+          <i class="fa-brands fa-instagram"></i><span>Inkspire Prints Instagram</span>
         </a>
-
         <a href="https://www.facebook.com/profile.php?id=61567069805851" class="link-card link-facebook" target="_blank">
-          <i class="fa-brands fa-facebook-f"></i>
-          <span>Inkspire Prints Facebook</span>
+          <i class="fa-brands fa-facebook-f"></i><span>Inkspire Prints Facebook</span>
         </a>
-
         <a href="https://wa.me/94702949758" class="link-card link-whatsapp" target="_blank">
-          <i class="fa-brands fa-whatsapp"></i>
-          <span>Business WhatsApp</span>
+          <i class="fa-brands fa-whatsapp"></i><span>Business WhatsApp</span>
         </a>
-
         <a href="https://g.co/kgs/JZbfrZM" class="link-card link-location" target="_blank">
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Visit the Shop</span>
+          <i class="fa-solid fa-location-dot"></i><span>Visit the Shop</span>
         </a>
       </div>
 
       <div class="category-group">
-        <h2 class="category-title">💡 AK Minds</h2>
+        <div class="category-title">💡 AK Minds</div>
 
         <a href="https://www.instagram.com/ak_minds/" class="link-card link-instagram" target="_blank">
-          <i class="fa-solid fa-brain"></i>
-          <span>AK Minds Instagram</span>
+          <i class="fa-solid fa-brain"></i><span>AK Minds Instagram</span>
         </a>
-
         <a href="https://www.linkedin.com/company/ak-minds/" class="link-card link-linkedin" target="_blank">
-          <i class="fa-brands fa-linkedin-in"></i>
-          <span>LinkedIn Company Page</span>
-        </a>
-      </div>
-
-      <div class="category-group">
-        <h2 class="category-title">👋 Meet the Creator</h2>
-
-        <a href="https://www.instagram.com/drk.soul_lvr/" class="link-card link-instagram" target="_blank">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <span>Creator Instagram</span>
-        </a>
-
-        <a href="https://wa.me/94772949758" class="link-card link-whatsapp" target="_blank">
-          <i class="fa-brands fa-whatsapp"></i>
-          <span>Creator WhatsApp</span>
+          <i class="fa-brands fa-linkedin-in"></i><span>LinkedIn Company Page</span>
         </a>
       </div>
 
     </div>
+  </section>
 
-    <footer>
-      &copy; 2026 Mohammed Ashfak
-    </footer>
-  </div>
+  <footer>
+    &copy; 2026 AK Minds X Inkspire Prints • 10/3 Kandy Road, Gelioya 20620
+  </footer>
 
+  <a href="https://wa.me/94702949758" class="fab" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <script>
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Dynamic Carousel Logic
+    const repoBaseURL = "https://raw.githubusercontent.com/AshfakIqbal/link-in-bio/main/carousel/";
+    const imageFiles = [
+      "image1.jpg", 
+      "image2.jpg",
+      "image3.jpg"
+      // Add your file names here
+    ];
+
+    const track = document.getElementById('carouselTrack');
+    const dotsContainer = document.getElementById('carouselDots');
+    let currentIndex = 0; let autoPlayInterval;
+
+    if (imageFiles.length > 0) {
+      imageFiles.forEach((file, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        const img = document.createElement('img');
+        img.src = repoBaseURL + file;
+        img.alt = `Featured Work ${index + 1}`;
+        img.onerror = function() { this.src = "https://placehold.co/1200x600/1a1a1a/4f46e5?text=Upload+" + file; };
+        slide.appendChild(img);
+        track.appendChild(slide);
+
+        const dot = document.createElement('div');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.onclick = () => goToSlide(index);
+        dotsContainer.appendChild(dot);
+      });
+
+      startAutoPlay();
+      const carouselContainer = document.getElementById('carouselContainer');
+      carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+      carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function moveSlide(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = imageFiles.length - 1;
+      if (currentIndex >= imageFiles.length) currentIndex = 0;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(() => moveSlide(1), 4000);
+    }
+  </script>
 </body>
 </html>
